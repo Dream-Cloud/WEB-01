@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--    servletContext的初始化参数 可以被所有servlet共享-->
+    <context-param>
+        <param-name>namespace</param-name>
+        <param-value>jack</param-value>
+    </context-param>
+    <context-param>
+        <param-name>age</param-name>
+        <param-value>22</param-value>
+    </context-param>
+
+
+
+    <servlet>
+        <!--    给当前的servlet配置名称-->
+        <servlet-name>helloServlet</servlet-name>
+        <!--    指定要配置的servlet是哪一个具体的类 此处使用全类名-->
+        <servlet-class>org.lanqiao.web.HelloServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+<!--        配置初始化参数 可配置多个 只对当前servlet有效-->
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>tom</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>123456</param-value>
+        </init-param>
+<!--        必须在最后一行-->
+        <load-on-startup>100</load-on-startup>
+    </servlet>
+        <!--    配置servlet映射-->
+    <servlet-mapping>
+        <!--        配置映射的servlet名称 需要对应上面的servlet name-->
+        <servlet-name>helloServlet</servlet-name>
+        <!--        servlet请求规则-->
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>test</servlet-name>
+        <servlet-class>org.lanqiao.web.TestServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+</web-app>
